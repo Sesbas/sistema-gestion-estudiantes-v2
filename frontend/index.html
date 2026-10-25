@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestión de estudiantes · Universidad Libre</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+<header><div class="brand"><span class="seal" aria-hidden="true">UL</span><div><strong>Universidad Libre</strong><small>Sistema de gestión de estudiantes · V2</small></div></div><div id="session" hidden><span id="identity"></span><button id="logout" class="secondary">Cerrar sesión</button></div></header>
+<main>
+  <section id="auth" class="auth panel">
+    <p class="eyebrow">COMUNIDAD ACADÉMICA</p><h1 id="auth-title">Bienvenido</h1><p>Accede para consultar y gestionar la información de los estudiantes.</p>
+    <div class="tabs"><button id="login-tab" aria-pressed="true">Iniciar sesión</button><button id="register-tab" aria-pressed="false">Crear cuenta</button></div>
+    <form id="auth-form">
+      <label>Usuario<input name="username" required minlength="3" maxlength="30" pattern="[A-Za-z0-9_]{3,30}" autocomplete="username"><small class="error" data-error="username"></small></label>
+      <label id="register-email" hidden>Correo electrónico<input name="email" type="email" maxlength="254" autocomplete="email" disabled><small class="error" data-error="email"></small></label>
+      <label>Contraseña<input name="password" type="password" required minlength="6" maxlength="72" autocomplete="current-password"><small class="error" data-error="password"></small></label>
+      <p class="error" data-error="general" role="alert"></p><button type="submit" id="auth-submit">Iniciar sesión</button>
+    </form>
+  </section>
+  <section id="workspace" hidden>
+    <div class="heading"><div><p class="eyebrow">GESTIÓN ACADÉMICA</p><h1>Estudiantes</h1><p>Consulta, organiza y actualiza el registro estudiantil.</p></div><button id="new-student">+ Nuevo estudiante</button></div>
+    <section class="stats" aria-label="Estadísticas generales" aria-live="polite"><article class="panel"><small>Total de estudiantes</small><strong id="stat-total">—</strong></article><article class="panel"><small>Promedio de edad</small><strong id="stat-average">—</strong></article><article class="panel"><small>Rango de edad</small><strong id="stat-range">—</strong></article><article class="panel"><small>Carreras registradas</small><strong id="stat-careers">—</strong></article></section>
+    <section class="panel records">
+      <div class="toolbar"><label class="search">Buscar estudiantes<input id="search" type="search" placeholder="Nombre, apellido o carrera" maxlength="100"></label><label>Ordenar por<select id="sort"><option value="id">Registro</option><option value="nombre,apellido">Nombre y apellido</option><option value="apellido,nombre">Apellido y nombre</option><option value="edad,apellido">Edad y apellido</option></select></label><label>Dirección<select id="direction"><option value="asc">Ascendente</option><option value="desc">Descendente</option></select></label><label>Por página<select id="page-size"><option>5</option><option>10</option><option>25</option><option>50</option></select></label></div>
+      <p id="list-status" role="status"></p><div class="table-wrap"><table><thead><tr><th scope="col">Estudiante</th><th scope="col">Edad</th><th scope="col">Carrera</th><th scope="col">Contacto</th><th scope="col">Acciones</th></tr></thead><tbody id="students"></tbody></table></div>
+      <nav class="pagination" aria-label="Páginas de estudiantes"><span id="page-info"></span><div><button id="previous" class="secondary">Anterior</button><button id="next" class="secondary">Siguiente</button></div></nav>
+    </section>
+    <section class="panel careers"><h2>Estudiantes por carrera</h2><ul id="career-list"></ul><small>Actualización automática cada 30 segundos.</small></section>
+  </section>
+</main>
+<dialog id="student-dialog"><form id="student-form"><div class="heading"><h2 id="student-title">Nuevo estudiante</h2><button type="button" id="close-dialog" class="secondary" aria-label="Cerrar formulario">✕</button></div><div class="form-grid">
+  <label>Nombre<input name="nombre" required minlength="2" maxlength="60"><small class="error" data-error="nombre"></small></label>
+  <label>Apellido<input name="apellido" required minlength="2" maxlength="60"><small class="error" data-error="apellido"></small></label>
+  <label>Edad<input name="edad" type="number" required min="15" max="100" step="1"><small class="error" data-error="edad"></small></label>
+  <label>Carrera<input name="carrera" required minlength="3" maxlength="100"><small class="error" data-error="carrera"></small></label>
+  <label>Correo electrónico<input name="email" type="email" required maxlength="254"><small class="error" data-error="email"></small></label>
+  <label>Teléfono (opcional)<input name="telefono" type="tel" maxlength="25"><small class="error" data-error="telefono"></small></label>
+  </div><p class="error" data-error="general" role="alert"></p><div class="form-actions"><button type="button" id="cancel-student" class="secondary">Cancelar</button><button type="submit">Guardar estudiante</button></div></form></dialog>
+<div id="toasts" aria-live="polite" aria-atomic="false"></div>
+<footer>Universidad Libre · Gestión de estudiantes</footer>
+</body></html>

@@ -1,0 +1,19 @@
+# Configuración privada y entorno local
+backend/.env
+.venv/
+.backups/
+
+# Archivos generados
+__pycache__/
+.pytest_cache/
+.pytest-work/
+.ui-checks/
+.local-logs/
+*.sqlite
+
+# Editores y sistema operativo
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
